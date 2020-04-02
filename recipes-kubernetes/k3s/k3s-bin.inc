@@ -18,7 +18,8 @@ inherit distro_features_check
 RDEPENDS_${PN} = "util-linux findutils pigz iproute2 ethtool iptables socat ca-certificates \
                   ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '', 'cgroup-lite', d)} \
                   "
-RCONFLICTS_${PN} += "containerd cni runc kubernetes"
+# NOTE: RCONFLICTS has cni in it, but I don't think it needed to
+RCONFLICTS_${PN} += "containerd runc kubernetes"
 RPROVIDES_${PN} = "kubectl crictl"
 
 INHIBIT_PACKAGE_STRIP = "1"
