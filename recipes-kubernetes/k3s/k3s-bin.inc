@@ -8,7 +8,7 @@ MAINTAINER = "Jan Brdr <jan@rancher.com>"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
 
-INC_PR = "r0"
+INC_PR = "r1"
 
 S = "${WORKDIR}"
 
@@ -50,6 +50,10 @@ do_install() {
 
     # containerd socket file directory
     install -d ${D}/run/k3s/containerd
+
+    # install the airgap files
+    install -d ${D}${localstatedir}/lib/rancher/k3s/agent/images/
+    install ${S}/k3s-airgap-images-${K3S_PKG_ARCH}.tar ${D}${localstatedir}/lib/rancher/k3s/agent/images/
 }
 
 FILES_${PN} += " \
