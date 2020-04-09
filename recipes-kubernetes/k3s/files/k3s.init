@@ -20,8 +20,8 @@ PID="/var/run/k3s.pid"
 
 test -x $DAEMON || exit 0
 
-# May be overwritten by the environment file
-K3S_ARGS="server --disable-agent"
+# Default to benign so user can configure for server or agent or both
+K3S_ARGS="check-config"
 
 # Source environment file
 if [ -f /etc/default/k3s ] ; then
